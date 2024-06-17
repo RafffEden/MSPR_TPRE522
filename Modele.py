@@ -1,4 +1,4 @@
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split,cross_val_score,validation_curve,GridSearchCV,learning_curve
 from sklearn.svm import SVC
 from sklearn.metrics import confusion_matrix
 import numpy as np
@@ -16,12 +16,12 @@ def show_graph_train(conf_matrix, data, classes:int):
     fig ,ax = plt.subplots()
 
     cmap = mp.colors.LinearSegmentedColormap.from_list('',['white','black'])
-    im = ax.imshow(conf_matrix,cmap = cmap)
+    im = ax.imshow(conf_matrix,cmap = "plasma")
     # à rendre generique pitié 
     for i in range(1, classes +1 ):
-        labels.append(f"Classe  {i}")
-    ax.set_xticks(np.arange(2),labels = ["classe 0","classe 1"] )
-    ax.set_yticks(np.arange(2),labels = ["classe 0","classe 1"] )
+        labels.append(f"{i}")
+    ax.set_xticks(np.arange(classes),labels = labels )
+    ax.set_yticks(np.arange(classes),labels = labels )
     ax.set_xlabel("Expected")
     ax.set_ylabel("Predicted")
     ax.set_title('Confusion matrix')
@@ -29,17 +29,19 @@ def show_graph_train(conf_matrix, data, classes:int):
 
 
     plt.savefig("Graph")
-    plt.show(block = False)
+    # plt.show(block = False)
 
-def training_SVN(path : str) -> SVC:
+def training_SVM(path : str) -> SVC:
     """Entrainement d'un modèle SVC à partir d'un ficher passer en paramètre
         et renvoie le modèle entrainée """	
 
     Data = pd.read_csv(path,delimiter=";")
     print(Data.shape)
-    X = Data.iloc[:,:-1].values #récupère les variables explicatives 
-    Y = Data.iloc[:,-1].values # récupère les variables à prédire 
-
+    X = Data.iloc[:,2:].values #récupère les variables explicatives 
+    Y = Data.iloc[:,1].values # récupère les variables à prédire 
+    Params = [{"gamma": [0.01,0.001,0.0001], "C":[1,10,100,1000]}]
+    
+    print("y = ",Y)
     # Data.head() #récupère les 5 premières lignes 
 
     # Diviser les données afin d'obtenir un jeu de test et un jeu d'entrainement 
@@ -61,8 +63,40 @@ def training_SVN(path : str) -> SVC:
     print("____ matrice de confusion ____")
     conf_matrix = confusion_matrix(Y_test, Y_pred)
     print(conf_matrix)
-    show_graph_train(conf_matrix)
+    # show_graph_train(conf_matrix,path,36)
+    
+    #validation curve
+    #Cross validation 
+    val = cross_val_score(modele,X,Y,cv=5)
+    print(val)
 
+    N, train_score,val_score = learning_curve(SVC()
+                                              ,X_train,Y_train,train_sizes= np.linspace(0.1,1.0,10), cv=5)
+    
+    plt.plot(N,train_score.mean(axis=1), label='train')
+    plt.plot(N, val_score.mean(axis=1), label='validation')
+    plt.xlabel("train_sizes")
+    plt.legend()
+    plt.savefig("learning_graph")
+    
+    grid_search = GridSearchCV(SVC(),Params,verbose=10)
+    
+    grid_search.fit(X_train,Y_train)
+    
+    best_estimator = grid_search.best_estimator_
+    N, train_score,val_score = learning_curve(best_estimator
+                                              ,X_train,Y_train,train_sizes= np.linspace(0.1,1.0,10), cv=5)
+    
+    plt.plot(N,train_score.mean(axis=1), label='train')
+    plt.plot(N, val_score.mean(axis=1), label='validation')
+    plt.xlabel("train_sizes")
+    plt.legend()
+    plt.savefig("learning_graph_grid")
+    
+    y_prediction = best_estimator.predict(X_test)
+    conf_matrix = confusion_matrix(Y_test, y_prediction)
+    show_graph_train(conf_matrix,path,36)
+    
     return modele
 
-training_SVN("data.csv")
+training_SVM("data.csv")
