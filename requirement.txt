@@ -1,0 +1,8 @@
+flask
+pandas
+utillc
+python-dotenv
+opencv-python
+scikit-image
+scikit-learn
+Matplotlib
