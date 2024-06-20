@@ -12,4 +12,8 @@
 
  ![alt text](learning_graph_grid.png)
 
- En commencant par le SVM 
+ Que ça soit pour le modèle standard ou le modèle optimisé, on peut voir un grand écart entre la courbe d'entrainement et la courbe de validation, cette écart peut être expliqué par une effet d'overfitting du modele c'est à dire que le modèle s'adapte trop aux données aux détriment de la précision générale, elle sera donc performante sur une petit volume de donnée mais ne s'ameliorera pas ou peu après. Ce phénomène peut-être dû au grand nombre de variable explicative qui rend l'utilisation d'un SVM difficilement adapté à nos données tels quelles ont été préparer. 
+
+ ### Axes d'amélioration 
+
+L'axe principale d'amélioration serait de reduire la quantité de variable explicative de nos images afin d'avoir moins de compléxité pour le modèle ou bien essayé de plus finethuner le modèle pour l'adapter ce dernier choix semble le moins viable étant donner que le modèle à aussi ses limitations en terme de résolution 
