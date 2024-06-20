@@ -4,7 +4,11 @@
 
  ## Application simple d'un SVM
 
- Dans un premier temps, nous allons appliquer un SVM avec les paramètres pas defaut 
+ Dans un premier temps, nous allons appliquer un SVM avec les paramètres pas défaut, l'idée de ce premiers et de voir si un SVM peut-être adapté à nos données et au problèmes qui l'on veut résoudre. 
+
+ Puis une fois tester sans thuner le modèle, on va le passer dans GridSearch afin de tirer un modèle avec des paramètres qui s'adapte le mieux à nos données. 
+
+ Ainsi avec ces deux modèles on pourra juger si un SVM est adapté à notre cas ou si notre jeu de données peut convenir à notre problèmatique.
 
 
  ## Explication des performances 
@@ -16,4 +20,4 @@
 
  ### Axes d'amélioration 
 
-L'axe principale d'amélioration serait de reduire la quantité de variable explicative de nos images afin d'avoir moins de compléxité pour le modèle ou bien essayé de plus finethuner le modèle pour l'adapter ce dernier choix semble le moins viable étant donner que le modèle à aussi ses limitations en terme de résolution 
+L'axe principale d'amélioration serait de reduire la quantité de variable explicative de nos images afin d'avoir moins de compléxité pour le modèle ou bien essayé de plus finethuner encore le modèle pour l'adapter, ce dernier choix semble le moins viable étant donner que le modèle à aussi ses limitations en terme de résolution. 
