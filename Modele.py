@@ -1,6 +1,7 @@
 from sklearn.model_selection import train_test_split,cross_val_score,validation_curve,GridSearchCV,learning_curve
 from sklearn.svm import SVC
 from sklearn.metrics import confusion_matrix
+from sklearn.metrics import classification_report
 import numpy as np
 import matplotlib.pyplot as plt 
 import pandas as pd
@@ -37,6 +38,7 @@ def training_SVM(path : str) -> SVC:
 
     Data = pd.read_csv(path,delimiter=";")
     print(Data.shape)
+    
     X = Data.iloc[:,2:].values #récupère les variables explicatives 
     Y = Data.iloc[:,1].values # récupère les variables à prédire 
     Params = [{"gamma": [0.01,0.001,0.0001], "C":[1,10,100,1000]}]
@@ -95,8 +97,9 @@ def training_SVM(path : str) -> SVC:
     
     y_prediction = best_estimator.predict(X_test)
     conf_matrix = confusion_matrix(Y_test, y_prediction)
+    print(classification_report(Y_test,Y_pred))
     show_graph_train(conf_matrix,path,36)
     
     return modele
 
-training_SVM("data.csv")
+training_SVM("data_pixel.csv")
