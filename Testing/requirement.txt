@@ -7,4 +7,3 @@ scikit-image
 scikit-learn
 Matplotlib
 numpy
-cv2

@@ -2,6 +2,7 @@ from sklearn.svm import SVC
 import matplotlib.pyplot as plt
 from skimage.feature import hog
 import os
+import cv2
 import pandas as pd
 from skimage.transform import resize
 import skimage.io as io
@@ -88,8 +89,10 @@ def load_data_images_pixel(folder_path):
                 #resize de l'image !Problème d'echelle
                 resized_img = resize(img, (32, 32),anti_aliasing=True) 
                 
+                blur_img = cv2.blur(resized_img,(50,50))
+                
                 #Sauvegarde dans le dictionnaire, 1 ligne = 1 image 
-                flat_image = resized_img.flatten()
+                flat_image = blur_img.flatten()
                 if flat_image.shape[0] != 1024:
                     raise Exception("Image size Error")
                 for i in range(flat_image.shape[0]) :
@@ -112,7 +115,7 @@ def load_data_images_pixel(folder_path):
         # print(data)
     print("Image Error :\n" ,img_error)
     #Passage de Dataframe en CSV 
-    df.to_csv("data_pixel.csv",sep=";",index=False)
+    df.to_csv("data_pixel_blured.csv",sep=";",index=False)
         
     return df 
 
