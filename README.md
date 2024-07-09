@@ -1,6 +1,6 @@
 # Projet MSPR 622
  
-Classifier des images de légumes et fruits en suivant le [cahier des charges du pdf](/DEVIA%20-%20Sujet%20MSPR%20TPRE622.pdf). Le jeu de données fourni par Kaggle contient 36 classes d'environ 80 images, chaque photo étant prise sans contraintes précises, certaines de dessus, de profile, de face, avec ou sanas fond uni.
+Classifier des images de légumes et fruits en suivant le [cahier des charges du pdf](/DEVIA%20-%20Sujet%20MSPR%20TPRE622.pdf). Le jeu de données fourni par Kaggle contient 36 classes d'environ 80 images, chaque photo étant prise sans contraintes précises, certaines de dessus, de profile, de face, avec ou sans fond uni.
  
 ## Liens
 - [Dataset sur Kaggle](https://www.kaggle.com/datasets/kritikseth/fruit-and-vegetable-image-recognition)
@@ -14,14 +14,9 @@ Classifier des images de légumes et fruits en suivant le [cahier des charges du
 ![](/res/indexing.png)
  
 ## Tester l'approche supervisée en machine learning avec scikitlearn
- 
-Faire une crossvalidation en utilisant différents classifiers de scikitlearn et afficher les matrices de confusions et courbe d'apprentissage de chaque modèle, puis conclure sur l'approche machine learning appliquée au problème à résoudre.
- 
-Commencer d'abord avec le feature descriptor [hog](https://scikit-image.org/docs/dev/auto_examples/features_detection/plot_hog.html) de chaque images et constater les performances. Expliquer comment les performances sont impactées par la nature des images et ce que caractérise l'algorithme hog.
- 
-Tester ensuite avec des tailles d'images différentes.
- 
-Enfin, tester avec les pixels brutes de l'image "flatten" comme feature descriptor. Comparer avec hog et conclure.
+Pour ce projet, nous allons tester différents modele d'intelligence artificiel afin de trouver le plus performant face à notre jeu de données.
+Chaque modele peut-être retrouvé dans un dossier dédier avec le code associé, un notebook et les graphiques de performances.
+
  
 ### Comparaison classifier scikitlearn
  
