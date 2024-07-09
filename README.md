@@ -1,6 +1,6 @@
 # Projet MSPR 622
  
-Classifier des images de légumes et fruits en suivant le [cahier des charges du pdf](/DEVIA%20-%20Sujet%20MSPR%20TPRE622.pdf). Le jeu de données fourni par Kaggle contient 36 classes d'environ 80 images, chaque photo étant prise sans contraintes précises, certaines de dessus, de profile, de face, avec ou sanas fond uni.
+Classifier des images de légumes et fruits en suivant le [cahier des charges du pdf](/DEVIA%20-%20Sujet%20MSPR%20TPRE622.pdf). Le jeu de données fourni par Kaggle contient 36 classes d'environ 80 images, chaque photo étant prise sans contraintes précises, certaines de dessus, de profile, de face, avec ou sans fond uni.
  
 ## Liens
 - [Dataset sur Kaggle](https://www.kaggle.com/datasets/kritikseth/fruit-and-vegetable-image-recognition)
